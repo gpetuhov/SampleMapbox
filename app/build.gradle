@@ -13,9 +13,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            // Here we get Mapbox token from ~/.gradle/gradle.properties file into BuildConfig
+            buildConfigField 'String', "MapboxToken", Mapbox_Token
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "MapboxToken", Mapbox_Token
         }
     }
 }
@@ -32,4 +37,7 @@ dependencies {
 
     // KAndroid
     implementation 'com.pawegio.kandroid:kandroid:0.8.8@aar'
+
+    // Mapbox
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.2.0'
 }
